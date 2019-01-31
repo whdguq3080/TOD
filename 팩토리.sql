@@ -1,0 +1,23 @@
+SELECT * FROM TAB;
+SELECT * FROM EMPLOYEES;
+
+
+    
+ INSERT INTO EMPLOYEES(EMPLOYEE_ID,MANAGER,NAME,BIRTH_DATE,PHOTO,NOTES)
+ VALUES(EMP_SEQ.NEXTVAL,'MANAGER','±è°æ¹Î','900101','KIM.JPG','MANAGER');
+ SELECT * FROM EMPLOYEES;
+ 
+update EMPLOYEES
+set NOTES = 'MANAGER'
+where name like '¸Å´ÏÀú';
+
+
+delete from EMPLOYEES where name like '1001';
+
+update EMPLOYEES
+set NOTES = 'MANAGER'
+where NOTES like '¸Å´ÏÀú';
+
+delete from EMPLOYEES where EMPLOYEE_ID like '1001';
+
+COMMIT;

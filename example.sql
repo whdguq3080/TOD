@@ -1,101 +1,104 @@
 SELECT * FROM TAB;
-select * from orders;
-DROP TABLE categories;
+SELECT * FROM ORDERS;
+DROP TABLE CATEGORIES;
 
-create table Customers(
-customer_id varchar2(15) primary key, 
-customers_name varchar2(15) not null,
-address varchar2(15) null,
-city varchar2(15) null,
-postal_code varchar2(15) null
+CREATE TABLE CUSTOMERS(
+CUSTOMER_ID VARCHAR2(15) PRIMARY KEY, 
+CUSTOMERS_NAME VARCHAR2(15) NOT NULL,
+ADDRESS VARCHAR2(15) NULL,
+CITY VARCHAR2(15) NULL,
+POSTAL_CODE VARCHAR2(15) NULL
 );
-create table employees(
-employees_id varchar2(15) primary key,
-last_name varchar2(15) not null,
-first_name varchar2(15) not null,
-birth_date varchar2(15) not null,
-photo varchar2(15) default '파일명',
-notes varchar2(15) default '메모'
+CREATE TABLE EMPLOYEES(
+EMPLOYEES_ID VARCHAR2(15) PRIMARY KEY,
+LAST_NAME VARCHAR2(15) NOT NULL,
+FIRST_NAME VARCHAR2(15) NOT NULL,
+BIRTH_DATE VARCHAR2(15) NOT NULL,
+PHOTO VARCHAR2(15) DEFAULT '파일명',
+NOTES VARCHAR2(15) DEFAULT '메모'
 );
-create table Shippers(
-Shipper_ID varchar2(15)  primary key,
-Shipper_Name varchar2(15) not null,
-phone varchar2(15) not null
+CREATE TABLE SHIPPERS(
+SHIPPER_ID VARCHAR2(15)  PRIMARY KEY,
+SHIPPER_NAME VARCHAR2(15) NOT NULL,
+PHONE VARCHAR2(15) NOT NULL
 );
 
-create sequence order_id
-start with 1
-increment by 1;
+CREATE SEQUENCE ORDER_ID
+START WITH 1
+INCREMENT BY 1;
 
-create table orders(
-order_id number primary key,
-customer_id varchar2(15),
-constraint orders_fk_customers foreign key(customer_id)
-    references customers(customer_id),
+CREATE TABLE ORDERS(
+ORDER_ID NUMBER PRIMARY KEY,
+CUSTOMER_ID VARCHAR2(15),
+CONSTRAINT ORDERS_FK_CUSTOMERS FOREIGN KEY(CUSTOMER_ID)
+    REFERENCES CUSTOMERS(CUSTOMER_ID),
     
-employees_id varchar2(15),
-constraint orders_fk_employees foreign key(employees_id)
-    references employees(employees_id),
+EMPLOYEES_ID VARCHAR2(15),
+CONSTRAINT ORDERS_FK_EMPLOYEES FOREIGN KEY(EMPLOYEES_ID)
+    REFERENCES EMPLOYEES(EMPLOYEES_ID),
     
-orderdate date default sysdate,
+ORDERDATE DATE DEFAULT SYSDATE,
 
-shipper_id varchar2(15),
-constraint orders_fk_shippers foreign key(shipper_id)
-    references shippers(shipper_id)
+SHIPPER_ID VARCHAR2(15),
+CONSTRAINT ORDERS_FK_SHIPPERS FOREIGN KEY(SHIPPER_ID)
+    REFERENCES SHIPPERS(SHIPPER_ID)
 );
 
-create table suppliers(
-supplier_id varchar2(15) primary key,
-supplier_name varchar2(15) not null,
-address varchar2(15) not null,
-city varchar2(15) not null,
-postalcode varchar2(15) not null,
-phone varchar2(15) not null
+CREATE TABLE SUPPLIERS(
+SUPPLIER_ID VARCHAR2(15) PRIMARY KEY,
+SUPPLIER_NAME VARCHAR2(15) NOT NULL,
+ADDRESS VARCHAR2(15) NOT NULL,
+CITY VARCHAR2(15) NOT NULL,
+POSTALCODE VARCHAR2(15) NOT NULL,
+PHONE VARCHAR2(15) NOT NULL
 );
 
-create sequence category_id
-start with 1000
-increment by 1;
+CREATE SEQUENCE CATEGORY_ID
+START WITH 1000
+INCREMENT BY 1;
 
-create table categories(
-category_id number primary key,
-category_name varchar2(15) not null,
-description varchar2(15)
+CREATE TABLE CATEGORIES(
+CATEGORY_ID NUMBER PRIMARY KEY,
+CATEGORY_NAME VARCHAR2(15) NOT NULL,
+DESCRIPTION VARCHAR2(15)
 );
 
-create sequence products_id
-start with 2000
-increment by 1;
-select * from tab;
+CREATE SEQUENCE PRODUCTS_ID
+START WITH 2000
+INCREMENT BY 1; 
+SELECT * FROM TAB;
 
-create table products(
-products_id number primary key,
-ptoduct_name varchar2(15) not null,
-supplier_id varchar2(15),
-constraint products_fk_suppliers foreign key(supplier_id)
-    references suppliers(supplier_id),
-category_id number,
-constraint products_fk_categories foreign key(category_id)
-    references categories(category_id),
-unit varchar2(15) not null,
-price number default 0
-);
-
-create sequence orderdetail_id
-start with 3000
-increment by 1;
-
-create table orderdetails(
-orderdetail_id number primary key,
-order_id number,
-constraint orderdetails_fk_orders foreign key(order_id)
-    references orders(order_id),
-products_id number,
-constraint orderdetails_fk_products foreign key(products_id)
-    references products(products_id),
-quantity number default 0
+CREATE TABLE PRODUCTS(
+PRODUCTS_ID NUMBER PRIMARY KEY,
+PRODUCT_NAME VARCHAR2(15) NOT NULL,
+SUPPLIER_ID VARCHAR2(15),
+CONSTRAINT PRODUCTS_FK_SUPPLIERS FOREIGN KEY(SUPPLIER_ID)
+    REFERENCES SUPPLIERS(SUPPLIER_ID),
+CATEGORY_ID NUMBER,
+CONSTRAINT PRODUCTS_FK_CATEGORIES FOREIGN KEY(CATEGORY_ID)
+    REFERENCES CATEGORIES(CATEGORY_ID),
+UNIT VARCHAR2(15) NOT NULL,
+PRICE NUMBER DEFAULT 0
 );
 
 
+CREATE SEQUENCE ORDERDETAIL_ID
+START WITH 3000
+INCREMENT BY 1;
 
-select * from tab;
+CREATE TABLE ORDER_DETAILS(
+ORDERDETAIL_ID NUMBER PRIMARY KEY,
+ORDER_ID NUMBER,
+CONSTRAINT ORDERDETAILS_FK_ORDERS FOREIGN KEY(ORDER_ID)
+    REFERENCES ORDERS(ORDER_ID),
+PRODUCTS_ID NUMBER,
+CONSTRAINT ORDERDETAILS_FK_PRODUCTS FOREIGN KEY(PRODUCTS_ID)
+    REFERENCES PRODUCTS(PRODUCTS_ID),
+QUANTITY NUMBER DEFAULT 0
+);
+
+
+
+SELECT * FROM TAB;
+
+DROP TABLE PRODUCTS;
