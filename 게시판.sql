@@ -44,3 +44,9 @@ references member(id)
 );
 
 select * from tab;
+
+
+--1. 현재 목록에서 ROWNUM을 추가한다
+
+SELECT ROWNUM "NO.",C.*
+FROM CUSTOMERS C; 
