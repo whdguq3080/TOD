@@ -8,7 +8,7 @@ INCREMENT BY 1;
 SELECT T2.*
 FROM(SELECT ROWNUM R2,T.*
                         FROM (SELECT ROWNUM RNUM ,P.* 
-                        FROM PRODUCTS P 
+                        FROM CATEGORIES P 
 					        ORDER BY RNUM DESC) T) T2 
                         WHERE R2 BETWEEN 1 AND  17;
 
